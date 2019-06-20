@@ -18,7 +18,7 @@
         public IActionResult Add()
         {
             var addCatViewModel = new AddCatViewModel();
-            return View(addCatViewModel);
+            return this.View(addCatViewModel);
         }
 
         [HttpPost]
@@ -31,7 +31,7 @@
             }
             else
             {
-                return View(addCat);
+                return this.View(addCat);
             }
             
         }
@@ -39,7 +39,7 @@
         public IActionResult Details(int id)
         {
             var cat = this.catService.GetCat(id);
-            return View(cat);
+            return this.View(cat);
         }
     }
 }

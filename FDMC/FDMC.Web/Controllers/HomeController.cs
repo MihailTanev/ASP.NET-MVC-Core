@@ -14,7 +14,7 @@
         }
         public IActionResult Index()
         {            
-            return View(this.homeService.GetAllCats());
+            return this.View(this.homeService.GetAllCats());
         }       
     }
 }
