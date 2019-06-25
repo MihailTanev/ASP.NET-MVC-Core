@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PANDA.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Panda.Data;
+using Panda.Models;
+using System;
+using System.Linq;
 
-namespace PANDA.Web
+namespace Panda.Web
 {
     public class Startup
     {
@@ -33,16 +36,60 @@ namespace PANDA.Web
             services.AddDbContext<PandaDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<PandaDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequiredLength = 3;
+            });
+
+
+            services.AddIdentity<PandaUser, IdentityRole>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<PandaDbContext>();
+
+
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<PandaDbContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+            using(var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                using(var context= serviceScope.ServiceProvider.GetRequiredService<PandaDbContext>())
+                {
+                    context.Database.EnsureCreated();
+
+                    if (!context.Roles.Any())
+                    {
+                        context.Roles.Add(new IdentityRole { Name = "Admin",NormalizedName="ADMIN" });
+                        context.Roles.Add(new IdentityRole { Name = "User", NormalizedName = "User" });
+                    }
+
+                    if (!context.PackageStatuses.Any())
+                    {
+                        context.PackageStatuses.Add(new PackageStatus { Name = "Pending" });
+                        context.PackageStatuses.Add(new PackageStatus { Name = "Shipped" });
+                        context.PackageStatuses.Add(new PackageStatus { Name = "Delivered" });
+                        context.PackageStatuses.Add(new PackageStatus { Name = "Acquired" });
+
+                    }
+                    context.SaveChanges();
+                }
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,10 +102,14 @@ namespace PANDA.Web
                 app.UseHsts();
             }
 
+            // Method for seed roles.
+            //SeedRoles.Seed(serviceProvider);
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseMvc(routes =>

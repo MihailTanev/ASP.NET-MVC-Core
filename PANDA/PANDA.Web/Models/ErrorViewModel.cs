@@ -1,6 +1,6 @@
 using System;
 
-namespace PANDA.Web.ViewModels
+namespace Panda.Web.Models
 {
     public class ErrorViewModel
     {

@@ -1,25 +1,42 @@
-﻿namespace PANDA.Web.Controllers
+﻿namespace Panda.Web.Controllers
 {
-    using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using PANDA.Web.ViewModels;
+    using Microsoft.EntityFrameworkCore;
+    using Panda.Data;
+    using Panda.Models;
+    using Panda.Web.ViewModels;
+    using System.Collections.Generic;
+    using System.Linq;
 
+    [Controller]
     public class HomeController : Controller
     {
+        private readonly PandaDbContext context;
+
+        public HomeController(PandaDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
-        }
+            if (this.User.Identity.IsAuthenticated)
+            {
+                List<PackageHomeViewModel> userPackages = this.context.Packages
+                    .Where(package => package.Recipient.UserName == this.User.Identity.Name)
+                    .Include(Package => Package.Status)
+                    .Select(package => new PackageHomeViewModel
+                    {
+                        Id = package.Id,
+                        Description = package.Description,
+                        Status = package.Status.Name
+                    })
+                    .ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+                return this.View(userPackages);
+            }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View();
         }
     }
 }
