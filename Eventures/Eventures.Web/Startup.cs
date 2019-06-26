@@ -9,6 +9,7 @@ using Eventures.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Eventures.Domain;
+using System.Linq;
 
 namespace Eventures.Web
 {
@@ -64,6 +65,14 @@ namespace Eventures.Web
                 using (var context = serviceScope.ServiceProvider.GetRequiredService<EventuresDbContext>())
                 {
                     context.Database.EnsureCreated();
+
+                    if (!context.Roles.Any())
+                    {
+                        context.Roles.Add(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+                        context.Roles.Add(new IdentityRole { Name = "User", NormalizedName = "User" });
+                    }
+                    context.SaveChanges();
+
                 }
             }
 
