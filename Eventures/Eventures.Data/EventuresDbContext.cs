@@ -6,6 +6,7 @@ namespace Eventures.Data
 {
     public class EventuresDbContext : IdentityDbContext<EventuresUser>
     {
+        public DbSet<Event> Events { get; set; }
         public EventuresDbContext(DbContextOptions<EventuresDbContext> options)
             : base(options)
         {
