@@ -2,12 +2,10 @@
 {
     using Eventures.Data;
     using Eventures.Domain;
-    using Eventures.Web.Models.BindingModels;
-    using Eventures.Web.ViewModels;
+    using Eventures.Web.ViewModels.Events;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
 
     public class EventController : Controller
@@ -29,7 +27,7 @@
         }
 
         [HttpPost]
-        public IActionResult Create(EventCreateBindingModel model)
+        public IActionResult Create(CreateEventViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -38,7 +36,7 @@
                     Name = model.Name,
                     Place = model.Place,
                     End = model.End,
-                    PriceTicket = model.PricePerTicket,
+                    PricePerTicket = model.PricePerTicket,
                     Start = model.Start,
                     TotalTickets = model.TotalTickets,
                 };
@@ -55,14 +53,16 @@
         [HttpGet]
         public IActionResult All()
         {
-            List<EventAllViewModel> events = context.Events
-                .Select(eventDb => new EventAllViewModel
+            List<EventViewModel> events = context.Events
+                .Select(eventDb => new EventViewModel
                 {
-                    Name=eventDb.Name,
-                    Place=eventDb.Place,
+                    Name = eventDb.Name,
+                    Place = eventDb.Place,
                     Start = eventDb.Start,
-                    End=eventDb.End
-                }).ToList();
+                    End = eventDb.End
+                })
+                .OrderByDescending(e => e.Start)
+                .ToList();
 
             return this.View(events);
         }

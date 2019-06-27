@@ -1,15 +1,15 @@
-﻿using Eventures.Web.Models.BindingModels;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-
-namespace Eventures.Web.Filters
+﻿namespace Eventures.Web.Filters
 {
+    using Eventures.Web.ViewModels.Events;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Linq;
+
     public class EventsLogActionFilter : ActionFilterAttribute
     {
         private readonly ILogger logger;
-        private EventCreateBindingModel model;
+        private CreateEventViewModel model;
 
         public EventsLogActionFilter(ILoggerFactory loggerFactory)
         {
@@ -18,7 +18,7 @@ namespace Eventures.Web.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            this.model = context.ActionArguments.Values.OfType<EventCreateBindingModel>().Single();
+            this.model = context.ActionArguments.Values.OfType<CreateEventViewModel>().Single();
 
             base.OnActionExecuting(context);
         }

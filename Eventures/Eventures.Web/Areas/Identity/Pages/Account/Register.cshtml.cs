@@ -52,7 +52,7 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
 
 
             [Required]
-            [Display(Name = "first Name")]
+            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
@@ -62,7 +62,7 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
 
             [Required]
             [Display(Name = "UCN")]
-            public string Ucn { get; set; }
+            public string UCN { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -92,7 +92,7 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    Ucn = Input.Ucn
+                    Ucn = Input.UCN
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
