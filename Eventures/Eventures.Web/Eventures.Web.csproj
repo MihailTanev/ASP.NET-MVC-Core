@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Eventures.Data\Eventures.Data.csproj" />
     <ProjectReference Include="..\Eventures.Domain\Eventures.Domain.csproj" />
+    <ProjectReference Include="..\Eventures.Services\Eventures.Services.csproj" />
   </ItemGroup>
 
 
