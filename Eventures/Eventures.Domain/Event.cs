@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Eventures.Domain
+﻿namespace Eventures.Domain
 {
+    using System;
+
     public class Event
     {
         public string Id { get; set; }

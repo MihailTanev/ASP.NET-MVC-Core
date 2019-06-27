@@ -5,6 +5,7 @@
     using Eventures.Web.Models.BindingModels;
     using Eventures.Web.ViewModels;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -13,9 +14,13 @@
     {
         private readonly EventuresDbContext context;
 
-        public EventController(EventuresDbContext context)
+        private readonly ILogger logger;
+
+
+        public EventController(EventuresDbContext context, ILogger<EventController> logger)
         {
             this.context = context;
+            this.logger = logger;
         }
 
         public IActionResult Create()
@@ -39,6 +44,8 @@
                 };
                 context.Events.Add(eventDb);
                 context.SaveChanges();
+
+                this.logger.LogInformation($"Event created: {model.Name}", model);
 
                 return RedirectToAction("All");
             }

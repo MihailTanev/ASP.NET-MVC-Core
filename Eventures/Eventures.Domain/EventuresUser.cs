@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace Eventures.Domain
+﻿namespace Eventures.Domain
 {
+    using Microsoft.AspNetCore.Identity;
+
     public class EventuresUser : IdentityUser
     {
         public string FirstName { get; set; }
