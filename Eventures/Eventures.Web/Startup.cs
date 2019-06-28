@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Eventures.Services;
 using Eventures.Services.Interfaces;
 using Eventures.Web.Filters;
+using Eventures.Web.Middleware;
 
 namespace Eventures.Web
 {
@@ -68,22 +69,6 @@ namespace Eventures.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetRequiredService<EventuresDbContext>())
-                {
-                    context.Database.EnsureCreated();
-
-                    if (!context.Roles.Any())
-                    {
-                        context.Roles.Add(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
-                        context.Roles.Add(new IdentityRole { Name = "User", NormalizedName = "USER" });
-                    }
-                    context.SaveChanges();
-
-                }
-            }
-
 
             if (env.IsDevelopment())
             {
@@ -96,6 +81,9 @@ namespace Eventures.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // add seed roles
+            app.UseDatabaseSeedWithIdentities();
 
             // add log  
             loggerFactory.AddFile($"Logs/Events.txt");

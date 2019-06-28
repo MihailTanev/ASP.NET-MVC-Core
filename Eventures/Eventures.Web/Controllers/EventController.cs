@@ -25,6 +25,7 @@
             this.logger = logger;
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return this.View();
