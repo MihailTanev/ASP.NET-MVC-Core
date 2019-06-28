@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using Eventures.Common;
 
 namespace Eventures.Web.Areas.Identity.Pages.Account
 {
@@ -42,7 +43,10 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "Username")]
+            [MinLength(GlobalConstants.USERNAME_MIN_LENGTH, ErrorMessage = "The {0} must be at least {1} characters long.")]
+            [RegularExpression("[a-zA-Z0-9-_.*~]+")]
             public string Username { get; set; }
 
             [Required]
@@ -50,22 +54,25 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-
             [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-
             [Required]
+            [DataType(DataType.Text)]
+            [MinLength(GlobalConstants.UCN_MIN_LENGHT)]
+            [MaxLength(GlobalConstants.UCN_MAX_LENGHT)]
             [Display(Name = "UCN")]
             public string UCN { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 5)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -99,7 +106,7 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
                 {
                     if (this._userManager.Users.Count() == 1)
                     {
-                        var roleResult = this._signInManager.UserManager.AddToRoleAsync(user, "Admin").Result;
+                        var roleResult = this._signInManager.UserManager.AddToRoleAsync(user, GlobalConstants.ADMIN_ROLE).Result;
                         if (roleResult.Errors.Any())
                         {
                             return LocalRedirect(returnUrl);
@@ -107,7 +114,7 @@ namespace Eventures.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        var roleResult = this._signInManager.UserManager.AddToRoleAsync(user, "User").Result;
+                        var roleResult = this._signInManager.UserManager.AddToRoleAsync(user, GlobalConstants.USER_ROLE).Result;
                         if (roleResult.Errors.Any())
                         {
                             return LocalRedirect(returnUrl);

@@ -61,7 +61,7 @@ namespace Eventures.Web
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredUniqueChars = 0;
-                options.Password.RequiredLength = 3;
+                options.Password.RequiredLength = 5;
             });
 
         }
@@ -78,7 +78,6 @@ namespace Eventures.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

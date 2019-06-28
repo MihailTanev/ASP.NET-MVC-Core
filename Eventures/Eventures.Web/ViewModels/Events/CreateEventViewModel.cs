@@ -1,5 +1,6 @@
 ﻿namespace Eventures.Web.ViewModels.Events
 {
+    using Eventures.Common;
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -7,11 +8,12 @@
     {
         [Required]
         [DataType(DataType.Text)]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 10)]
+        [MinLength(GlobalConstants.EVENT_NAME_MIN_LENGTH)]
+        [MaxLength(GlobalConstants.EVENT_NAME_MAX_LENGTH)]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [DataType(DataType.Text)]
         [Display(Name = "Place")]
         public string Place { get; set; }

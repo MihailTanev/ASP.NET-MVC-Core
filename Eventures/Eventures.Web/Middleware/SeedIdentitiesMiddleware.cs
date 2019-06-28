@@ -6,7 +6,6 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public static class SeedIdentitiesMiddleware
@@ -25,22 +24,23 @@
 
                 Task.Run(async () =>
                     {
-                        var adminRole = GlobalConstants.ADMIN_ROLE;
-
                         var roles = new[]
                         {
-                            adminRole,
+                            GlobalConstants.ADMIN_ROLE,
                             GlobalConstants.USER_ROLE,
                         };
 
-                        foreach (var role in roles)
+                       foreach (var role in roles)
                         {
-                            if (!context.Roles.Any())
+                            bool roleExists = await roleManager.RoleExistsAsync(role);
+
+                            if (!roleExists)
                             {
                                 await roleManager.CreateAsync(new IdentityRole { Name = role });
                             }
                         }
 
+                        var adminRole = GlobalConstants.ADMIN_ROLE;
                         var adminEmail = "admin@gmail.com";
                         var ucn = "56412566";
 
