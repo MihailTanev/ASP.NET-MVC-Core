@@ -2,7 +2,10 @@
 {
     using Eventures.Data;
     using Eventures.Domain;
+    using Eventures.Services.Interfaces;
+    using Eventures.Web.Filters;
     using Eventures.Web.ViewModels.Events;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
@@ -11,12 +14,13 @@
     public class EventController : Controller
     {
         private readonly EventuresDbContext context;
-
         private readonly ILogger logger;
+        private readonly IEventService eventsService;
 
 
-        public EventController(EventuresDbContext context, ILogger<EventController> logger)
+        public EventController(EventuresDbContext context, ILogger<EventController> logger, IEventService eventsService)
         {
+            this.eventsService = eventsService;
             this.context = context;
             this.logger = logger;
         }
@@ -27,27 +31,20 @@
         }
 
         [HttpPost]
+        [Authorize]
+        [ServiceFilter(typeof(AdminActivityLoggerFilter))]
         public IActionResult Create(CreateEventViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                Event eventDb = new Event
-                {
-                    Name = model.Name,
-                    Place = model.Place,
-                    End = model.End,
-                    PricePerTicket = model.PricePerTicket,
-                    Start = model.Start,
-                    TotalTickets = model.TotalTickets,
-                };
-                context.Events.Add(eventDb);
-                context.SaveChanges();
-
+                this.eventsService.CreateEvent(model.Name, model.Place, model.Start, model.End, model.TotalTickets, model.PricePerTicket);
                 this.logger.LogInformation($"Event created: {model.Name}", model);
-
                 return RedirectToAction("All");
             }
-            return this.View();
+            else
+            {
+                return this.View(model);
+            }
         }
 
         [HttpGet]

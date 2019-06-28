@@ -9,8 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Eventures.Domain;
 using System.Linq;
-using System;
 using Microsoft.Extensions.Logging;
+using Eventures.Services;
+using Eventures.Services.Interfaces;
+using Eventures.Web.Filters;
 
 namespace Eventures.Web
 {
@@ -38,12 +40,17 @@ namespace Eventures.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddTransient<IEventService, EventService>();
+
             services.AddIdentity<EventuresUser, IdentityRole>()
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<EventuresDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<AdminActivityLoggerFilter>();
+
 
             services.Configure<IdentityOptions>(options =>
             {

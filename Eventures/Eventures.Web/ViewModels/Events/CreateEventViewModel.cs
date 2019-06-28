@@ -13,7 +13,7 @@
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Name")]
+        [Display(Name = "Place")]
         public string Place { get; set; }
 
         [Required]

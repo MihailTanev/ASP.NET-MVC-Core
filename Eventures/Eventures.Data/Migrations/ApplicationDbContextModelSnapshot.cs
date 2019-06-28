@@ -30,7 +30,7 @@ namespace Eventures.Data.Migrations
 
                     b.Property<string>("Place");
 
-                    b.Property<decimal>("PriceTicket");
+                    b.Property<decimal>("PricePerTicket");
 
                     b.Property<DateTime>("Start");
 

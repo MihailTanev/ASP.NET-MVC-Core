@@ -6,14 +6,14 @@
     using System;
     using System.Linq;
 
-    public class EventsLogActionFilter : ActionFilterAttribute
+    public class AdminActivityLoggerFilter : ActionFilterAttribute
     {
         private readonly ILogger logger;
         private CreateEventViewModel model;
 
-        public EventsLogActionFilter(ILoggerFactory loggerFactory)
+        public AdminActivityLoggerFilter(ILoggerFactory loggerFactory)
         {
-            this.logger = loggerFactory.CreateLogger<EventsLogActionFilter>();
+            this.logger = loggerFactory.CreateLogger<AdminActivityLoggerFilter>();
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
