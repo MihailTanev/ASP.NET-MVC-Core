@@ -1,0 +1,7 @@
+{
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  }
+}
