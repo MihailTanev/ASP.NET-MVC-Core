@@ -10,7 +10,8 @@ namespace Stopify.Data
             : base(options)
         {
         }
-
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<ProductType> ProductTypes { get; set; }
     }
 }

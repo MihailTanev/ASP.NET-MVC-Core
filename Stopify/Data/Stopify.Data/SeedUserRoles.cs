@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Stopify.Common;
-using Stopify.Models;
-using System.Threading.Tasks;
-
-namespace Stopify.Data
+﻿namespace Stopify.Data
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+    using Stopify.Common;
+    using Stopify.Models;
+    using System.Threading.Tasks;
+
     public static class SeedUserRoles
     {
         public static IApplicationBuilder UseDatabaseSeedWithIdentities(this IApplicationBuilder app)
