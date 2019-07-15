@@ -64,31 +64,6 @@ namespace Stopify.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetRequiredService<StopifyDbContext>())
-                {
-                    context.Database.EnsureCreated();
-
-                    if (!context.Roles.Any())
-                    {
-                        context.Roles.Add(new IdentityRole
-                        {
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
-
-                        context.Roles.Add(new IdentityRole
-                        {
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
-
-                        context.SaveChanges();
-                    }
-                }
-            }
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

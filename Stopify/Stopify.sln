@@ -11,13 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{BDDF07FA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{C3FB9A19-5362-4CAF-8758-A6CB657FF42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Models", "Model\Stopify.Models\Stopify.Models.csproj", "{5321CB68-5F0C-4F73-A6BF-2F81CA5CA4E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Models", "Model\Stopify.Models\Stopify.Models.csproj", "{5321CB68-5F0C-4F73-A6BF-2F81CA5CA4E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Data", "Data\Stopify.Data\Stopify.Data.csproj", "{02996440-DB12-465D-9465-CFE3F51A2E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Data", "Data\Stopify.Data\Stopify.Data.csproj", "{02996440-DB12-465D-9465-CFE3F51A2E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Services", "Service\Stopify.Services\Stopify.Services.csproj", "{D93E7B8D-3FBC-41EE-88B8-B4B5331249C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Services", "Service\Stopify.Services\Stopify.Services.csproj", "{D93E7B8D-3FBC-41EE-88B8-B4B5331249C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Web", "Web\Stopify.Web\Stopify.Web.csproj", "{33A23BD7-13EA-49FE-90D7-A4C575EF334C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Web", "Web\Stopify.Web\Stopify.Web.csproj", "{33A23BD7-13EA-49FE-90D7-A4C575EF334C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CADB6C70-73E9-4E42-984B-0F8ED4FD75B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Common", "Common\Stopify.Common\Stopify.Common.csproj", "{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{33A23BD7-13EA-49FE-90D7-A4C575EF334C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A23BD7-13EA-49FE-90D7-A4C575EF334C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A23BD7-13EA-49FE-90D7-A4C575EF334C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{02996440-DB12-465D-9465-CFE3F51A2E29} = {9B2AFC85-0692-4F6E-8DC1-5CD2DCFCBAC4}
 		{D93E7B8D-3FBC-41EE-88B8-B4B5331249C4} = {C3FB9A19-5362-4CAF-8758-A6CB657FF42B}
 		{33A23BD7-13EA-49FE-90D7-A4C575EF334C} = {64664492-170C-4647-9E23-652BB2013196}
+		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0} = {CADB6C70-73E9-4E42-984B-0F8ED4FD75B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61A047DE-31C9-498B-BA38-0DA3063147C3}
