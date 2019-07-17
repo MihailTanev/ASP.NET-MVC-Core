@@ -1,48 +1,84 @@
 ﻿@model Stopify.Web.InputModels.CreateProductInputModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>CreateProductInputModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Create Product</h1>
+<form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3">
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Name" class="text-primary h5">Name</label>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="name"
+                   placeholder="Name..."
+                   asp-for="Name">
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Price" class="text-primary h5">Price</label>
             </div>
-            <div class="form-group">
-                <label asp-for="ManufacturedOn" class="control-label"></label>
-                <input asp-for="ManufacturedOn" class="form-control" />
-                <span asp-validation-for="ManufacturedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductType" class="control-label"></label>
-                <input asp-for="ProductType" class="form-control" />
-                <span asp-validation-for="ProductType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <input type="number"
+                   step="0.01"
+                   class="form-control text-primary text-center"
+                   id="price"
+                   placeholder="Price..."
+                   asp-for="Price">
+        </div>
     </div>
-</div>
+    <div id="date-and-picture-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="ManufacturedOn" class="text-primary h5">Manufactured On</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="manufacturedOn"
+                   placeholder="Manufactured On..."
+                   asp-for="ManufacturedOn">
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Picture" class="text-primary h5">Picture</label>
+            </div>
+            <input type="file"
+                   class="form-control text-primary text-center"
+                   id="picture"
+                   placeholder="Picture Link..."
+                   asp-for="Picture">
+        </div>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="ProductType" class="text-primary h5">Product Type</label>
+        </div>
+        <select class="form-control text-primary" id="type" asp-for="ProductType">
+            <option selected disabled>--- Select Product Type ---</option>
+            @foreach (var type in (IEnumerable<ProductCreateProductTypeViewModel>)this.ViewData["types"])
+            {
+                <option value="@type.Name">@type.Name</option>
+            }
+        </select>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Create Product</button>
+    </div>
+</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<script>window.onload = () => {
+        $('#manufacturedOn').datetimepicker({
+            format: 'd.m.Y H:i',
+            lang: 'en'
+        });
+    };</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

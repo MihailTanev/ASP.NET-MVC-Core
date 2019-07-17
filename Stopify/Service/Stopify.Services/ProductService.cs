@@ -1,8 +1,11 @@
 ﻿namespace Stopify.Services
 {
+    using Microsoft.EntityFrameworkCore;
     using Stopify.Data;
     using Stopify.Models;
     using Stopify.Services.Models;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class ProductService : IProductService
@@ -41,5 +44,15 @@
 
             return result > 0;
         }
+
+        public async Task<IEnumerable<ProductTypeServiceModel>> GetAllProductTypes()
+        {
+            return await this.context.ProductTypes
+                .Select(productType => new ProductTypeServiceModel
+                {
+                    Id = productType.Id,
+                    Name = productType.Name
+                }).ToListAsync();
+        }   
     }
 }

@@ -8,6 +8,7 @@ using Stopify.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Stopify.Models;
+using Stopify.Services;
 
 namespace Stopify.Web
 {
@@ -51,6 +52,8 @@ namespace Stopify.Web
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequiredLength = 5;
             });
+
+            services.AddTransient<IProductService, ProductService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
