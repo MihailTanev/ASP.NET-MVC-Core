@@ -1,9 +1,12 @@
 ﻿namespace Stopify.Services
 {
-    using Stopify.Web.InputModels;
+    using Stopify.Services.Models;
+    using System.Threading.Tasks;
 
     public interface IProductService
     {
-        bool Create(CreateProductInputModel model)
+        Task <bool> Create(ProductServiceModel model);
+
+        Task<bool> CreateProductType(ProductTypeServiceModel product);
     }
 }

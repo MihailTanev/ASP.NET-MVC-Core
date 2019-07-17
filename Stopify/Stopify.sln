@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Web.ViewModels", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Web.InputModels", "Web\Stopify.Web.InputModels\Stopify.Web.InputModels.csproj", "{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Services.Models", "Service\Stopify.Services.Models\Stopify.Services.Models.csproj", "{C8CD3359-E874-47F4-AA00-E149916ADB94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8CD3359-E874-47F4-AA00-E149916ADB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8CD3359-E874-47F4-AA00-E149916ADB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8CD3359-E874-47F4-AA00-E149916ADB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8CD3359-E874-47F4-AA00-E149916ADB94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0} = {CADB6C70-73E9-4E42-984B-0F8ED4FD75B3}
 		{4DF23602-6863-464E-80F7-4FF24DE75AE9} = {64664492-170C-4647-9E23-652BB2013196}
 		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83} = {64664492-170C-4647-9E23-652BB2013196}
+		{C8CD3359-E874-47F4-AA00-E149916ADB94} = {C3FB9A19-5362-4CAF-8758-A6CB657FF42B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61A047DE-31C9-498B-BA38-0DA3063147C3}

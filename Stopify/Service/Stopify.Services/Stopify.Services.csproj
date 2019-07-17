@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Web\Stopify.Web.InputModels\Stopify.Web.InputModels.csproj" />
+    <ProjectReference Include="..\..\Data\Stopify.Data\Stopify.Data.csproj" />
+    <ProjectReference Include="..\Stopify.Services.Models\Stopify.Services.Models.csproj" />
   </ItemGroup>
 
 </Project>

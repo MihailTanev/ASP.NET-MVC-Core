@@ -5,6 +5,7 @@
     using Stopify.Common;
 
     [Authorize(Roles = RoleConstants.ADMIN_ROLE)]
+    [Area(AreaConstants.ADMINISTRATION_AREA)]
     public abstract class AdminController : Controller
     {
 
