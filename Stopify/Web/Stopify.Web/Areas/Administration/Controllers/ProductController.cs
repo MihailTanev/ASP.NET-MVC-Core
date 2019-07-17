@@ -5,6 +5,8 @@
     using Stopify.Services.Models;
     using Stopify.Web.InputModels;
     using System.Threading.Tasks;
+    using System.Linq;
+    using Stopify.Web.ViewModels;
 
     public class ProductController : AdminController
     {
@@ -41,7 +43,14 @@
         [HttpGet(Name = "Create")]
         public async Task<IActionResult> Create()
         {
-           return this.View();
+            var allProductTypes = await this.productService.GetAllProductTypes();
+
+            this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
+            {
+                Name = productType.Name
+            }).ToList(); ;
+
+            return this.View();
         }
 
         [HttpPost(Name = "Create")]

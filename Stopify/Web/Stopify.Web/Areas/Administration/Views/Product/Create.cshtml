@@ -1,6 +1,6 @@
-﻿@model Stopify.Web.InputModels.CreateProductInputModel
+﻿@using Stopify.Web.ViewModels
+@model Stopify.Web.InputModels.CreateProductInputModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -73,7 +73,8 @@
 </form>
 
 
-<script>window.onload = () => {
+<script>
+    window.onload = () => {
         $('#manufacturedOn').datetimepicker({
             format: 'd.m.Y H:i',
             lang: 'en'
