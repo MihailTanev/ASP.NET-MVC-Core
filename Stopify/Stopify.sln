@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Web", "Web\Stopify.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CADB6C70-73E9-4E42-984B-0F8ED4FD75B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Common", "Common\Stopify.Common\Stopify.Common.csproj", "{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stopify.Common", "Common\Stopify.Common\Stopify.Common.csproj", "{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Web.ViewModels", "Web\Stopify.Web.ViewModels\Stopify.Web.ViewModels.csproj", "{4DF23602-6863-464E-80F7-4FF24DE75AE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopify.Web.InputModels", "Web\Stopify.Web.InputModels\Stopify.Web.InputModels.csproj", "{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF23602-6863-464E-80F7-4FF24DE75AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF23602-6863-464E-80F7-4FF24DE75AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF23602-6863-464E-80F7-4FF24DE75AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF23602-6863-464E-80F7-4FF24DE75AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +71,8 @@ Global
 		{D93E7B8D-3FBC-41EE-88B8-B4B5331249C4} = {C3FB9A19-5362-4CAF-8758-A6CB657FF42B}
 		{33A23BD7-13EA-49FE-90D7-A4C575EF334C} = {64664492-170C-4647-9E23-652BB2013196}
 		{29983DE3-C7EA-4B56-BD72-F3B635E97DD0} = {CADB6C70-73E9-4E42-984B-0F8ED4FD75B3}
+		{4DF23602-6863-464E-80F7-4FF24DE75AE9} = {64664492-170C-4647-9E23-652BB2013196}
+		{63EFE7BC-7C39-4B8D-B477-37B353FA8E83} = {64664492-170C-4647-9E23-652BB2013196}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61A047DE-31C9-498B-BA38-0DA3063147C3}
