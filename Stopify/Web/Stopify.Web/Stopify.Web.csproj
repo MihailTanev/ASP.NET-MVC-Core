@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Data\Stopify.Data\Stopify.Data.csproj" />
     <ProjectReference Include="..\..\Model\Stopify.Models\Stopify.Models.csproj" />
     <ProjectReference Include="..\..\Service\Stopify.Services\Stopify.Services.csproj" />
+    <ProjectReference Include="..\Stopify.Web.InputModels\Stopify.Web.InputModels.csproj" />
   </ItemGroup>
 
 
