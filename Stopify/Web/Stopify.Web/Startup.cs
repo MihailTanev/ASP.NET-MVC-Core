@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Stopify.Models;
 using Stopify.Services;
+using CloudinaryDotNet;
 
 namespace Stopify.Web
 {
@@ -42,6 +43,15 @@ namespace Stopify.Web
                 .AddEntityFrameworkStores<StopifyDbContext>()
                 .AddDefaultTokenProviders();
 
+            Account cloudinaryCredential = new Account(
+                this.Configuration["Cloudinary:CloudName"],
+                this.Configuration["Cloudinary:ApiKey"],
+                this.Configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(cloudinaryCredential);
+
+            services.AddSingleton(cloudinary);
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = false;
@@ -54,6 +64,8 @@ namespace Stopify.Web
             });
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

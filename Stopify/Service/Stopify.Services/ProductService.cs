@@ -26,7 +26,8 @@
                 Name = model.Name,
                 Price = model.Price,
                 ManufacturedOn = model.ManufacturedOn,
-                ProductType = productTypeDb
+                ProductType = productTypeDb,
+                Picture = model.Picture,
             };
 
             context.Products.Add(product);
