@@ -27,7 +27,7 @@
                     {
                             RoleConstants.ADMIN_ROLE,
                             RoleConstants.USER_ROLE,
-                        };
+                    };
 
                     foreach (var role in roles)
                     {

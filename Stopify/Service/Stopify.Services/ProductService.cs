@@ -1,5 +1,6 @@
 ﻿namespace Stopify.Services
 {
+    using Microsoft.EntityFrameworkCore;
     using Stopify.Data;
     using Stopify.Models;
     using Stopify.Services.Models;
@@ -17,11 +18,15 @@
 
         public async Task<bool> Create(ProductServiceModel model)
         {
+            ProductType productTypeDb = context.ProductTypes
+                .SingleOrDefault(productType => productType.Name == model.ProductType.Name);
+
             Product product = new Product
             {
                 Name = model.Name,
                 Price = model.Price,
                 ManufacturedOn = model.ManufacturedOn,
+                ProductType = productTypeDb
             };
 
             context.Products.Add(product);

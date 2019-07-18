@@ -60,8 +60,9 @@
             {
                 Name = model.Name,
                 Price = model.Price,
-                ManufacturedOn=model.ManufacturedOn,
+                ManufacturedOn = model.ManufacturedOn,
                 ProductType = new ProductTypeServiceModel { Name = model.ProductType },
+                Picture = null,
             };
 
             await this.productService.Create(serviceModel);
