@@ -49,7 +49,17 @@
             return result > 0;
         }
 
-        public async Task<IQueryable<ProductTypeServiceModel>> GetAllProductTypes()
+        public IQueryable<ProductServiceModel> GetAllProducts()
+        {
+            return this.context.Products.Select(product => new ProductServiceModel
+            {
+                Name = product.Name,
+                Picture = product.Picture,
+                Price = product.Price,
+            });
+        }
+
+        public IQueryable<ProductTypeServiceModel> GetAllProductTypes()
         {
             return this.context.ProductTypes
                 .Select(productType => new ProductTypeServiceModel

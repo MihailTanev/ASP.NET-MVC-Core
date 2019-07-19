@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Linq;
     using Stopify.Web.ViewModels;
+    using Microsoft.EntityFrameworkCore;
 
     public class ProductController : AdminController
     {
@@ -46,7 +47,7 @@
         [HttpGet(Name = "Create")]
         public async Task<IActionResult> Create()
         {
-            var allProductTypes = await this.productService.GetAllProductTypes();
+            var allProductTypes = await this.productService.GetAllProductTypes().ToListAsync();
 
             this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
             {

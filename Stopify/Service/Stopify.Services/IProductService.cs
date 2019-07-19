@@ -6,9 +6,12 @@
 
     public interface IProductService
     {
-        Task<IQueryable<ProductTypeServiceModel>> GetAllProductTypes();
+        IQueryable<ProductTypeServiceModel> GetAllProductTypes();
+         
         Task <bool> Create(ProductServiceModel model);
 
         Task<bool> CreateProductType(ProductTypeServiceModel product);
+
+        IQueryable<ProductServiceModel> GetAllProducts();
     }
 }
