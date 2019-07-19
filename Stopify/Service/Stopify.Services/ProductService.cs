@@ -1,8 +1,9 @@
 ﻿namespace Stopify.Services
 {
-    using Microsoft.EntityFrameworkCore;
+    using AutoMapper;
     using Stopify.Data;
     using Stopify.Models;
+    using Stopify.Services.Mapping;
     using Stopify.Services.Models;
     using System.Linq;
     using System.Threading.Tasks;
@@ -21,14 +22,8 @@
             ProductType productTypeDb = context.ProductTypes
                 .SingleOrDefault(productType => productType.Name == model.ProductType.Name);
 
-            Product product = new Product
-            {
-                Name = model.Name,
-                Price = model.Price,
-                ManufacturedOn = model.ManufacturedOn,
-                ProductType = productTypeDb,
-                Picture = model.Picture,
-            };
+            Product product = Mapper.Map<Product>(model);
+            product.ProductType = productTypeDb;
 
             context.Products.Add(product);
             int result = await context.SaveChangesAsync();
@@ -51,22 +46,12 @@
 
         public IQueryable<ProductServiceModel> GetAllProducts()
         {
-            return this.context.Products.Select(product => new ProductServiceModel
-            {
-                Name = product.Name,
-                Picture = product.Picture,
-                Price = product.Price,
-            });
+            return this.context.Products.To<ProductServiceModel>();
         }
 
         public IQueryable<ProductTypeServiceModel> GetAllProductTypes()
         {
-            return this.context.ProductTypes
-                .Select(productType => new ProductTypeServiceModel
-                {
-                    Id = productType.Id,
-                    Name = productType.Name
-                });
+            return this.context.ProductTypes.To<ProductTypeServiceModel>();
         }
     }
 }

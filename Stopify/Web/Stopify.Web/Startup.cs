@@ -10,6 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Stopify.Models;
 using Stopify.Services;
 using CloudinaryDotNet;
+using Stopify.Services.Mapping;
+using Stopify.Web.InputModels;
+using System.Reflection;
+using Stopify.Web.ViewModels.Home.Index;
+using Stopify.Services.Models;
 
 namespace Stopify.Web
 {
@@ -73,6 +78,11 @@ namespace Stopify.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(
+                 typeof(CreateProductInputModel).GetTypeInfo().Assembly,
+                 typeof(ProductHomeViewModel).GetTypeInfo().Assembly,
+                 typeof(ProductServiceModel).GetTypeInfo().Assembly);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
