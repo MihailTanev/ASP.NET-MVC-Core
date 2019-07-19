@@ -1,4 +1,4 @@
-﻿@model  IList<Stopify.Web.ViewModels.Home.Index.ProductHomeViewModel>
+﻿@model IList<Stopify.Web.ViewModels.Home.Index.ProductHomeViewModel>
 @{
     ViewData["Title"] = "Home";
 }
@@ -54,7 +54,8 @@ else
         }
     </div>
 
-    @*<script>$('#products-search-bar').on("change paste keyup", function () {
+    <script>
+    $('#products-search-bar').on("change paste keyup", function () {
             $('.product').show();
 
             let searchValue = $('#products-search-bar').val();
@@ -66,5 +67,6 @@ else
                     $(elem).hide();
                 }
             }
-        });</script>*@
+    });
+    </script>
 }

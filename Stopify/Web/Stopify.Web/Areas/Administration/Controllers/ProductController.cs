@@ -8,6 +8,7 @@
     using System.Linq;
     using Stopify.Web.ViewModels;
     using Microsoft.EntityFrameworkCore;
+    using AutoMapper;
 
     public class ProductController : AdminController
     {
@@ -60,16 +61,11 @@
         [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create(CreateProductInputModel model)
         {
-            string pictureUrl = await this.cloudinaryService.UploadPictureAsync(model.Picture, model.Name);    
+            string pictureUrl = await this.cloudinaryService.UploadPictureAsync(model.Picture, model.Name);
 
-            ProductServiceModel serviceModel = new ProductServiceModel
-            {
-                Name = model.Name,
-                Price = model.Price,
-                ManufacturedOn = model.ManufacturedOn,
-                ProductType = new ProductTypeServiceModel { Name = model.ProductType },
-                Picture = pictureUrl,
-            };
+            ProductServiceModel serviceModel = Mapper.Map<ProductServiceModel>(model);
+
+            serviceModel.Picture = pictureUrl;
 
             await this.productService.Create(serviceModel);
 
