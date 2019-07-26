@@ -53,7 +53,7 @@
             this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
             {
                 Name = productType.Name
-            }).ToList(); ;
+            }).ToList(); 
 
             return this.View();
         }
