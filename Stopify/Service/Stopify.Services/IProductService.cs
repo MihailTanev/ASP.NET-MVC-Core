@@ -13,5 +13,6 @@
         Task<bool> CreateProductType(ProductTypeServiceModel product);
 
         IQueryable<ProductServiceModel> GetAllProducts();
+
     }
 }

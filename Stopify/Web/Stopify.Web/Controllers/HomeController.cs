@@ -27,7 +27,8 @@
                         Name = product.Name,
                         Price = product.Price,
                         Picture = product.Picture,
-                    }).ToListAsync();
+                    })
+                    .ToListAsync();
                 return this.View(products);
             };
             return View();
